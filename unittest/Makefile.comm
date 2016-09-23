@@ -1,0 +1,50 @@
+#绝对路径
+BASEBASEROOT=/opt/p2p_server/branches/matrix/server
+
+#被测试程序的主目录,写绝对路径
+SERVER_ROOT = ${BASEBASEROOT}/reallive/mxrsessionapply
+
+#生成测试报告目录
+HTML_DIR = ./gtest_report
+
+#########################################################
+#							#
+#		1.一般只需要更改上面的变量		#
+#		2.需要将libgmock.a -> gmock.a静态库     #
+#		放在/usr/local/lib目录下        	#
+#		3.将gtest和gmock的头文件目录放在	#
+#		/usr/local/include下			#
+#							#
+#########################################################
+
+#被测试程序的代码转移目录
+CODE = CODE
+CODE_TEST = CODE_TEST
+
+#源文件，包括头文件和cpp文件
+SOURCECODE = $(wildcard $(SERVER_ROOT)/src/*/*.cpp $(SERVER_ROOT)/src/*/*.h)
+
+#notdir去除路径，patsubst将.cpp后缀变为.o后缀，filter-out过滤掉头文件，addprefix添加目录前缀
+OBJS = $(addprefix $(CODE)/,$(filter-out %.h,$(patsubst %.cpp,%.o,$(notdir $(SOURCECODE)))))
+OBJS_WITHOUT_MAIN = $(filter-out %main.o,$(OBJS))
+
+#测试代码目标文件
+OBJS_TEST = $(patsubst %.cpp,%.o,$(wildcard $(CODE_TEST)/*.cpp))
+
+PUBLIC_DIR = ${BASEBASEROOT}/../public
+FRAMECOMMON = ${BASEBASEROOT}/framecommon
+SRVFRAME = ${BASEBASEROOT}/srvframe
+UTILS = ${BASEBASEROOT}/utils
+
+INCLUDE = -I/usr/include/mysql/\
+          -I${PUBLIC_DIR} -I$(FRAMECOMMON)/include -I$(SRVFRAME)/include -I${UTILS}/include/json -I${UTILS}/include/hiredis\
+          -I./$(CODE)
+
+LIBS = -L${SRVFRAME}/lib  -lsrvframe -L${FRAMECOMMON}/lib -lframecommon -L${UTILS}/lib\
+       /usr/lib64/mysql/libmysqlclient_r.a -lz -lpthread -lssl -luuid -lhiredis -ljson -lrt\
+       -lgmock -L/usr/local/lib
+#LIBS += -lgcov
+
+#定义宏
+MACRO = -D_REENTRANT -D__USE_EPOLL
+CFLAGS = -g -Wall ${MACRO} -Wextra -pthread -fprofile-arcs -ftest-coverage -g3
