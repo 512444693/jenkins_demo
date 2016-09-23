@@ -34,8 +34,7 @@
 - 代码覆盖率报告
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step7.jpg)
 - jmeter测试过程报告
-- ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step8.jpg)
-
+![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step8.jpg)
 
 
 ## 展望
