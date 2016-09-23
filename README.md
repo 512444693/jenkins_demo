@@ -20,7 +20,7 @@
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step1.jpg)
 2. 配置源码管理，即将本项目中的文件拉下来
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step2.jpg)
-3. 配置构建过
+3. 配置构建过程
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step3.jpg)
 4. 配置构建后操作
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step4.jpg)
@@ -38,5 +38,15 @@
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step8.jpg)
 
 
-## 展望
-以后可将jmeter的性能测试也加入进来
+## 问题
+- 这只是一个示例，用来展示如何将ant（调用jmeter），单元测试，报表等与jenkins结合，实际测试任务中，可能比这个简单，也可能更复杂
+- 本示例用的是github来存储文件，实际可能svn更好，因为可以单独clone一个子目录，符合任务较多的情况，而且在内网操作更加方便
+- 关于测试流程
+```
+1. 测试过程中会创建jmx文件，这样功能测试的主要文件就有了
+2. 在编译之前只需要稍微配置一下Makefile.comm即可，这样生成覆盖率的文件便有了
+3. 测试过程中可能还有其它的文件，比如说收包工具的文件，数据库文件等等
+4. 加入svn或其他版本控制的目的是能够分享和保存，以便以后使用
+5. 有了上面的步骤，参考本示例加入持续集成的功能就不难了
+```
+- 以后可将jmeter的性能测试也加入进来
