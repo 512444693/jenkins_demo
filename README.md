@@ -2,7 +2,7 @@
 ## 介绍
 该项目是个demo，是将编译、Ant运行Jmeter、单元测试、生成报告与jenkins结合起来的一个示例
 
-- jmetertest目录下是ant运行jmeter所需的文件
+- jmetertest目录下是ant运行jmeter所需的文件；build.xml文件做了一些修改，会在运行前删除jtl文件
 - unittest目录是[unittest](https://github.com/512444693/unittest)项目下*mxrsessionapply*分支的文件
 
 ## 思路
