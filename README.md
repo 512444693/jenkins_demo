@@ -14,7 +14,7 @@
 - 作为示例
 
 ## 持续集成示例
-- 先安装一个名为*HTML Publisher plugin*的插件，用来展示报告，其它插件默认安装即可
+- 先安装一个名为*HTML Publisher plugin*的插件，用来展示报告，其它插件在jenkins第一次启动的时候默认安装即可
 - 邮件服务器、git、ant等工具要配置正确(注意配置邮件时需要将*系统管理员邮件地址*和smtp中的*User Name*配置一致，否则可能会认证失败)
 1. 在jenkins中创建一个名为mxrsessionapply_ant_jmeter_and_unittest_and_mail的任务
 ![image](https://raw.githubusercontent.com/512444693/resources/master/jenkins_demo/step1.jpg)
